@@ -115,7 +115,31 @@ console.log(joe1 === joe2);
 
 ### Promises
 
+Once you understand javascript callbacks you’ll soon find yourself in nested “callback hell.” This is where Promises help! Wrap your async logic in a Promise and `resolve` on success or `reject` on fail. Use “then” to handle success and `catch` to handle failure.
 
+```javascript
+const myPromise = new Promise(function(res, rej) {
+  setTimeout(function(){
+    if (Math.random() < 0.9) {
+      return res('Hooray!');
+    }
+    return rej('Oh no!');
+  }, 1000);
+});
+
+myPromise
+  .then(function(data) {
+    console.log('Success: ' + data);
+   })
+   .catch(function(err) {
+    console.log('Error: ' + err);
+   });
+   
+// If Math.random() returns less than 0.9 the following is logged:
+// "Success: Hooray!"
+// If Math.random() returns 0.9 or greater the following is logged:
+// "Error: On no!"
+```
 
 ### Async Await
 
