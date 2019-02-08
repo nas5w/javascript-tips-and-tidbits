@@ -10,12 +10,29 @@
 
 ---
 
-# Tips & Tidbits
-
 ## Sections
 
+- [General Concepts](#general-concepts)
 - [Comparison](#comparison)
 - [Miscellaneous](#miscellaneous)
+
+## General Concepts
+
+### Closures
+
+Closure is an important javascript pattern to give private access to a variable. In this example, createGreeter returns an anonymous function that has access to the supplied greeting, "Hello." For all future uses, sayHello will have access to this greeting! 
+
+```javascript
+function createGreeter(greeting) {
+  return function(name) {
+    console.log(greeting + ', ' + name);
+  }
+}
+
+const sayHello = createGreeter('Hello');
+sayHello('Joe');
+// Hello, Joe
+```
 
 ## Comparison
 
