@@ -112,6 +112,18 @@ console.log(joe1 === joe2);
 
 ### Callbacks
 
+Far too many people are intimidated by #javascript callback functions! They are simple, take this example. The `console.log` function is being passed as a callback to `myFunc`. It gets executed when `setTimeout` completes. That’s all there is to it!
+
+```javascript
+function myFunc(text, callback) {
+  setTimeout(function() {
+    callback(text);
+  }, 2000);
+}
+
+myFunc('Hello world!', console.log);
+// 'Hello world!'
+```
 
 ### Promises
 
