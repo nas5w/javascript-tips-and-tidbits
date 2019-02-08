@@ -17,8 +17,7 @@
 ## Sections
 
 - [Comparison](#comparison)
-- Section TBD
-- Section TBD
+- [Miscellaneous](#miscellaneous)
 
 ## Comparison
 
@@ -34,9 +33,23 @@ console.log(joe1 === joe2);
 // False
 ```
 
-## Section TBD
+## Miscellaneous
 
-Content
+### Increment and Decrement
+
+Ever wonder what the difference between `i++` and `++i` was? Did you know both were options? `i++` returns `i` and then increments it whereas `++i` increments `i` and then returns it.
+
+```javascript
+let i = 0;
+console.log(i++);
+// 0
+```
+
+```javascript
+let i = 0;
+console.log(++i);
+// 1
+```
 
 ## Section TBD
 
