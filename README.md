@@ -14,6 +14,7 @@
 
 - [General Concepts](#general-concepts)
 - [Comparison](#comparison)
+- [Callbacks, Promises, Async Await](#callbacks-promises-async-await)
 - [Miscellaneous](#miscellaneous)
 
 ## General Concepts
@@ -87,6 +88,33 @@ const joe2 = { name: 'Joe' };
 
 console.log(joe1 === joe2);
 // False
+```
+
+## Callbacks, Promises, Async Await
+
+### Callbacks
+
+
+### Promises
+
+
+
+### Async Await
+
+Once you get a hang of javascript promises, you might like `async await`, which is just “syntactic sugar” on top of promises. In the following example we create an `async` function and within that we `await` the `greeter` promise. 
+
+```javascript
+const greeter = new Promise((res, rej) => {
+  setTimeout(() => res('Hello world!'), 2000);
+})
+
+async function myFunc() {
+  const greeting = await greeter;
+  console.log(greeting);
+}
+
+myFunc();
+// 'Hello world!'
 ```
 
 ## Miscellaneous
