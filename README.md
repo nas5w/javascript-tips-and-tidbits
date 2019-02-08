@@ -76,6 +76,28 @@ myFunc(1, 2, 3, 4);
 // 3
 ```
 
+### Array Methods
+
+There is some confusion around the javascript array methods `map`, `filter`, `reduce`. 
+
+- map: return array where each element is transformed as specified by the function
+- filter: return array of elements where the function returns true
+- reduce: accumulate values as specified in function
+
+```javascript
+const arr = [1, 2, 3, 4, 5, 6];
+const mapped = arr.map(el => el + 2);
+const filtered = arr.filter(el => el === 2 || el === 4);
+const reduced = arr.reduce((total, current) => total + current);
+
+console.log(mapped);
+// [3, 4, 5, 6, 7, 8]
+console.log(filtered);
+// [2, 4]
+console.log(reduced);
+// 21
+```
+
 ### Generators
 
 Don’t fear the \*. The generator function specifies what `value` is yielded next time `next()` is called. Can either have a finite number of yields, after which `next()` returns an undefined `value`, or an infinite number of values using a loop.
