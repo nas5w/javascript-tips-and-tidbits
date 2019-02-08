@@ -6,4 +6,34 @@
 
 ---
 
-A continuously-evolving compendium of javascript tips based on common areas of confusion or misunderstanding.
+<p align="center">
+  A continuously-evolving compendium of javascript tips based on common areas of confusion or misunderstanding.
+</p>
+
+---
+
+# Tips & Tidbits
+
+## Sections
+
+- Section TBD
+- Section TBD
+- Section TBD
+
+## Section TBD
+
+Content
+
+## Section TBD
+
+Content
+
+## Section TBD
+
+Content
+
+---
+
+# Contributing
+
+Contributing note
