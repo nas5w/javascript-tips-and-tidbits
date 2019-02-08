@@ -4,8 +4,6 @@
   <img alt="Tips & Tidbits" src="https://i.imgur.com/EHbPbzj.png" height="100px" /> 
 </div>
 
----
-
 <p align="center">
   A continuously-evolving compendium of javascript tips based on common areas of confusion or misunderstanding.
 </p>
