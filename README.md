@@ -189,12 +189,6 @@ console.log(++i);
 // 1
 ```
 
-## Section TBD
-
-Content
-
----
-
 # Contributing
 
-Contributing note
+Contributions welcome! All I ask is that you open an issue and we discuss your proposed changes before you create a pull request.
