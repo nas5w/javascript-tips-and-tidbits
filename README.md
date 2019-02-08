@@ -1,4 +1,3 @@
-[Imgur](https://i.imgur.com/mrN2Qmx.png)
 <div align="center">
   <img alt="JavaScript" src="https://i.imgur.com/mrN2Qmx.png" width="100px" height="100px" />&nbsp;&nbsp;&nbsp;
   <img alt="Tips & Tidbits" src="https://i.imgur.com/EHbPbzj.png" height="100px" /> 
@@ -51,6 +50,30 @@ function introduce({ name, age }) {
 
 console.log(introduce(person));
 // "I'm Eddie and I'm 24 years old!"
+```
+
+### Spread Syntax
+
+A javascript concept that can throw people off but is relatively simple is the spread operator! In the following case, `Math.max` can't be applied to the `arr` array because it doesn't take an array as an argument, it takes the individual elements as arguments. The spread operator `...` is used to pull the individual elements out the array.
+
+```javascript
+const arr = [4, 6, -1, 3, 10, 4];
+const max = Math.max(...arr);
+console.log(max);
+// 10
+```
+
+### Rest Syntax
+
+Let's talk about javascript rest syntax. You can use it to put any number of arguments passed to a function into an array!
+
+```javascript
+function myFunc(...args) {
+  console.log(args[0] + args[1]);
+}
+
+myFunc(1, 2, 3, 4);
+// 3
 ```
 
 ### Generators
