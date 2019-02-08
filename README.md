@@ -140,6 +140,17 @@ console.log(ids.next().value);
 
 ## Comparison
 
+### Identity Operator (`===`) vs. Equality Operator (`==`)
+
+Be sure to know the difference between the identify operator (`===`) and equality operator (`==`) in javascript! The `==` operator will do type conversion prior to comparing values whereas the `===` operator will not do any type conversion before comparing.
+
+```javascript
+console.log(0 == '0');
+// True
+console.log(0 === '0');
+// False
+```
+
 ### Comparing Objects
 
 A mistake I see javascript newcomers make is directly comparing objects. Variables are pointing to references to the objects in memory, not the objects themselves! One method to actually compare them is converting the objects to JSON strings. This has a drawback though: object property order is not guaranteed! A safer way to compare objects is to pull in a library that specializes in deep object comparison (e.g., [lodash's isEqual](https://lodash.com/docs#isEqual)).
