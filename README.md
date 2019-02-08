@@ -35,6 +35,24 @@ sayHello('Joe');
 // Hello, Joe
 ```
 
+### Destructuring
+
+Don't be thrown off by javascript parameter destructuring! It's a common way to cleanly pass an object to a function. In this example, destructuring is used to cleanly pass the `person` object to the `introduce` function!
+
+```javascript
+const person = {
+  name: 'Eddie',
+  age: 24
+}
+
+function introduce({ name, age }) {
+  console.log(`I'm ${name} and I'm ${age} years old!`);
+}
+
+console.log(introduce(person));
+// "I'm Eddie and I'm 24 years old!"
+```
+
 ### Generators
 
 Don’t fear the \*. The generator function specifies what `value` is yielded next time `next()` is called. Can either have a finite number of yields, after which `next()` returns an undefined `value`, or an infinite number of values using a loop.
@@ -101,7 +119,7 @@ console.log(joe1 === joe2);
 
 ### Async Await
 
-Once you get a hang of javascript promises, you might like `async await`, which is just “syntactic sugar” on top of promises. In the following example we create an `async` function and within that we `await` the `greeter` promise. 
+Once you get the hang of javascript promises, you might like `async await`, which is just “syntactic sugar” on top of promises. In the following example we create an `async` function and within that we `await` the `greeter` promise. 
 
 ```javascript
 const greeter = new Promise((res, rej) => {
