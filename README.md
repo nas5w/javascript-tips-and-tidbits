@@ -13,6 +13,7 @@
 - [General Concepts](#general-concepts)
 - [Comparison](#comparison)
 - [Callbacks, Promises, Async Await](#callbacks-promises-async-await)
+- [Interview Questions](#interview-questions)
 - [Miscellaneous](#miscellaneous)
 
 ## General Concepts
@@ -224,6 +225,36 @@ async function myFunc() {
 
 myFunc();
 // 'Hello world!'
+```
+
+## Interview Questions
+
+### Traversing a Linked List
+
+Here's a javascript solution to a classic software development interview question: traversing a linked list. You can use a while loop to recursively iterate through the linked list until there are no more values!
+
+```javascript
+const linkedList = {
+  val: 5,
+  next: {
+    val: 3,
+    next: {
+      val: 10,
+      next: null
+    }
+  }
+}
+
+let arr = [];
+let head = linkedList;
+
+while(head !== null) {
+  arr.push(head.val);
+  head = head.next;
+}
+
+console.log(arr);
+// [5, 3, 10]
 ```
 
 ## Miscellaneous
