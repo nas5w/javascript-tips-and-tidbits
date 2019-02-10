@@ -37,7 +37,7 @@ Example time! In the following snippet, `var2` is set as equal to `var1`. Since 
 let var1 = 'My string';
 let var2 = var1;
 
-var2 = 'My string';
+var2 = 'My new string';
 
 console.log(var1);
 // 'My string'
