@@ -106,6 +106,52 @@ api.get('http://www.example.com/get-endpoint');
 api.post('http://www.example.com/post-endpoint', { name: 'Joe' })
 ```
 
+## Destructuring
+
+Don't be thrown off by javascript parameter destructuring! It's a common way to cleanly extract properties from objects. 
+
+```javascript
+const obj = {
+  name: 'Joe',
+  food: 'cake'
+}
+
+const { name, food } = obj;
+
+console.log(name, food);
+// 'Joe' 'cake'
+```
+
+If you want to extract properties under a different name, you can specify them using the following format.
+
+```javascript
+const obj = {
+  name: 'Joe',
+  food: 'cake'
+}
+
+const { name: myName, food: myFood } = obj;
+
+console.log(myName, myFood);
+// 'Joe' 'cake'
+```
+
+In the following example, destructuring is used to cleanly pass the `person` object to the `introduce` function. In other words, destructuring can be (and often is) used directly for extracting parameters passed to a function. If you're familiar with React, you probably have seen this before!
+
+```javascript
+const person = {
+  name: 'Eddie',
+  age: 24
+}
+
+function introduce({ name, age }) {
+  console.log(`I'm ${name} and I'm ${age} years old!`);
+}
+
+console.log(introduce(person));
+// "I'm Eddie and I'm 24 years old!"
+```
+
 ## Interview Questions
 
 ### Traversing a Linked List
