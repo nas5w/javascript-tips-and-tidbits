@@ -182,7 +182,8 @@ JavaScript array methods can often provide you incredible, elegant ways to perfo
 
 I will cover a number of different array methods here, organized by similar methods that sometimes get conflated. This list is in no way comprehensive: I encourage you to review and practice all of them discussed on MDN (my favorite JavaScript reference).
 
-**map, filter, reduce**
+### map, filter, reduce
+
 There is some confusion around the javascript array methods `map`, `filter`, `reduce`. These are helpful methods for transforming an array or returning an aggregate value.
 
 - **map:** return array where each element is transformed as specified by the function
@@ -212,7 +213,8 @@ console.log(reduced);
 // 21
 ```
 
-**find, findIndex, indexOf**
+### find, findIndex, indexOf
+
 The array methods `find`, `findIndex`, and `indexOf` can often be conflated. Use them as follows.
 
 - **find:** return the first instance that matches the specified criteria. Does not progress to find any other matching instances.
@@ -244,7 +246,8 @@ console.log(foundIndex);
 // 1
 ```
 
-**push, pop, shift, unshift**
+### push, pop, shift, unshift
+
 There are a lot of great array method to help add or remove elements from arrays in a targeted fashion.
 
 - **push:** This is a relatively simple method that adds an item to the end of an array. It modifies the array in-place and the function itself returns the item added to the array.
@@ -291,7 +294,8 @@ console.log(unshifted);
 // 7
 ```
 
-**splice, slice**
+### splice, slice
+
 These methods either modify or return subsets of arrays.
 
 - **splice:** Change the contents of an array by removing or replacing existing elements and/or adding new elements. This method modifies the array in place.
@@ -315,7 +319,7 @@ console.log(arr);
 // ['a', 'b', 'c', 'd', 'e']
 ```
 
-**sort**
+### sort
 
 - **sort:** sorts an array based on the provided function which takes a first element and second element argument. Modifies the array in place. If the function returns negative or 0, the order remains unchanged. If positive, the element order is switched.
 
