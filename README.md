@@ -205,6 +205,159 @@ console.log(arr);
 // [5, 3, 10]
 ```
 
+## Array Methods
+
+JavaScript array methods can often provide you incredible, elegant ways to perform the data transformation you need. As a contributor to StackOverflow, I frequently see questions regarding how to manipulate an array of objects in one way or another. This tends to be the perfect use case for array methods.
+
+I will cover a number of different array methods here, organized by similar methods that sometimes get conflated. This list is in no way comprehensive: I encourage you to review and practice all of them discussed on MDN (my favorite JavaScript reference).
+
+**map, filter, reduce**
+There is some confusion around the javascript array methods `map`, `filter`, `reduce`. These are helpful methods for transforming an array or returning an aggregate value.
+
+- **map:** return array where each element is transformed as specified by the function
+
+```javascript
+const arr = [1, 2, 3, 4, 5, 6];
+const mapped = arr.map(el => el + 20);
+console.log(mapped);
+// [21, 22, 23, 24, 25, 26]
+```
+
+- **filter:** return array of elements where the function returns true
+
+```javascript
+const arr = [1, 2, 3, 4, 5, 6];
+const filtered = arr.filter(el => el === 2 || el === 4);
+console.log(filtered);
+// [2, 4]
+```
+
+- **reduce:** accumulate values as specified in function
+
+```javascript
+const arr = [1, 2, 3, 4, 5, 6];
+const reduced = arr.reduce((total, current) => total + current);
+console.log(reduced);
+// 21
+```
+
+**find, findIndex, indexOf**
+The array methods `find`, `findIndex`, and `indexOf` can often be conflated. Use them as follows.
+
+- **find:** return the first instance that matches the specified criteria. Does not progress to find any other matching instances.
+
+```javascript
+const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const found = arr.find(el => el > 5);
+console.log(found);
+// 6
+```
+
+Again, note that while everything after 5 meets the criteria, only the first matching element is returned. This is actually super helpful in situations where you would normally break a `for` loop when you find a match!
+
+- **findIndex:** This works almost identically to find, but rather than returning the first matching element it returns the index of the first matching element. Take the following example, which uses names instead of numbers for clarity.
+
+```javascript
+const arr = ['Nick', 'Frank', 'Joe', 'Frank'];
+const foundIndex = arr.findIndex(el => el === 'Frank');
+console.log(foundIndex);
+// 1
+```
+
+- **indexOf:** Works almost identically to findIndex, but instead of taking a function as an argument it takes a simple value. You can use this when you have simpler logic and don't need to use a function to check whether there is a match.
+
+```javascript
+const arr = ['Nick', 'Frank', 'Joe', 'Frank'];
+const foundIndex = arr.indexOf('Frank');
+console.log(foundIndex);
+// 1
+```
+
+**push, pop, shift, unshift**
+There are a lot of great array method to help add or remove elements from arrays in a targeted fashion.
+
+- **push:** This is a relatively simple method that adds an item to the end of an array. It modifies the array in-place and the function itself returns the item added to the array.
+
+```javascript
+let arr = [1, 2, 3, 4];
+const pushed = arr.push(5);
+console.log(arr);
+// [1, 2, 3, 4, 5]
+console.log(pushed);
+// 5
+```
+
+- **pop:** This removes the last item from an array. Again, it modifies the array in place. The function itself returns the item removed from the array.
+
+```javascript
+let arr = [1, 2, 3, 4];
+const popped = arr.pop();
+console.log(arr);
+// [1, 2, 3]
+console.log(popped);
+// 4
+```
+
+- **shift:** This removes the first item from an array. Again, it modifies the array in place. The function itself returns the item removed from the array.
+
+```javascript
+let arr = [1, 2, 3, 4];
+const shifted = arr.shift();
+console.log(arr);
+// [2, 3, 4]
+console.log(shifted);
+// 1
+```
+
+- **unshift:** This adds one or more elements to the beginning of an array. Again, it modifies the array in place. Unlike a lot of the other methods, the function itself returns the new length of the array.
+
+```javascript
+let arr = [1, 2, 3, 4];
+const unshifted = arr.unshift(5, 6, 7);
+console.log(arr);
+// [5, 6, 7, 1, 2, 3, 4]
+console.log(unshifted);
+// 7
+```
+
+**splice, slice**
+These methods either modify or return subsets of arrays.
+
+- **splice:** Change the contents of an array by removing or replacing existing elements and/or adding new elements. This method modifies the array in place.
+
+```javascript
+The following code sample can be read as: at position 1 of the array, remove 0 elements and insert b.
+let arr = ['a', 'c', 'd', 'e'];
+arr.splice(1, 0, 'b')
+console.log(arr);
+// ['a', 'b', 'c', 'd', 'e']
+```
+
+- **slice:** returns a shallow copy of an array from a specified start position and before a specified end position. If no end position is specified, the rest of the array is returned. Importantly, this method does not modify the array in place but rather returns the desired subset.
+
+```javascript
+let arr = ['a', 'b', 'c', 'd', 'e'];
+const sliced = arr.slice(2, 4);
+console.log(sliced);
+// ['b', 'c']
+console.log(arr);
+// ['a', 'b', 'c', 'd', 'e']
+```
+
+**sort**
+
+- **sort:** sorts an array based on the provided function which takes a first element and second element argument. Modifies the array in place. If the function returns negative or 0, the order remains unchanged. If positive, the element order is switched.
+
+```javascript
+let arr = [1, 7, 3, -1, 5, 7, 2];
+const sorter = (firstEl, secondEl) => firstEl - secondEl;
+arr.sort(sorter);
+console.log(arr);
+// [-1, 1, 2, 3, 5, 7, 7]
+```
+
+Phew, did you catch all of that? Neither did I. In fact, I had to reference the MDN docs a lot while writing this - and that's okay! Just knowing what kind of methods are out there with get you 95% of the way there.
+
 ## Miscellaneous
 
 ### Increment and Decrement
