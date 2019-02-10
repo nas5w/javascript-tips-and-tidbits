@@ -8,22 +8,22 @@
 
 ---
 
-## Sections
+## Contents
 
-- Value vs. Reference Variable Assignment
-- Closures
-- Destructuring
-- Spread Syntax
-- Rest Syntax
-- Array Methods
-- Generators
-- Identity Operator (===) vs. Equality Operator (==)
-- Object Comparison
-- Callback Functions
-- Promises
-- Async Await
-- Interview Questions
-- Miscellaneous
+- [Value vs. Reference Variable Assignment](#value-vs-reference-variable-assignment)
+- [Closures](#closures)
+- [Destructuring](#destructuring)
+- [Spread Syntax](#spread-syntax)
+- [Rest Syntax](#rest-syntax)
+- [Array Methods](#array-methods)
+- [Generators](#generators)
+- [Identity Operator (===) vs. Equality Operator (==)](#identity-operator--vs-equality-operator)
+- [Object Comparison](#object-comparison)
+- [Callback Functions](#callback-functions)
+- [Promises](#promises)
+- [Async Await](#async-await)
+- [Interview Questions](#interview-questions)
+- [Miscellaneous](#miscellaneous)
 
 ## Value vs. Reference Variable Assignment
 
