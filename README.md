@@ -376,6 +376,104 @@ console.log(ids.next().value);
 // etc...
 ```
 
+## Identity Operator (===) vs. Equality Operator (==)
+
+Be sure to know the difference between the identify operator (`===`) and equality operator (`==`) in javascript! The `==` operator will do type conversion prior to comparing values whereas the `===` operator will not do any type conversion before comparing.
+
+```javascript
+console.log(0 == '0');
+// True
+console.log(0 === '0');
+// False
+```
+
+## Object Comparison
+
+A mistake I see javascript newcomers make is directly comparing objects. Variables are pointing to references to the objects in memory, not the objects themselves! One method to actually compare them is converting the objects to JSON strings. This has a drawback though: object property order is not guaranteed! A safer way to compare objects is to pull in a library that specializes in deep object comparison (e.g., lodash's isEqual).
+
+The following objects appear equal but they are in fact pointing to different references. 
+
+```javascript
+const joe1 = { name: 'Joe' };
+const joe2 = { name: 'Joe' };
+
+console.log(joe1 === joe2);
+// false
+```
+
+Conversely, the following evaluates as true because one object is set equal to the other object and are therefore pointing to the same reference (there is only one object in memory).
+
+```javascript
+const joe1 = { name: 'Joe' };
+const joe2 = joe1;
+
+console.log(joe1 === joe2);
+// true
+```
+
+Make sure to review the Value vs. Reference section above to fully understand the ramifications of setting a variable equal to another variable that's pointing to a reference to an object in memory!
+
+## Callback Functions
+
+Far too many people are intimidated by javascript callback functions! They are simple, take this example. The `console.log` function is being passed as a callback to `myFunc`. It gets executed when `setTimeout` completes. That's all there is to it!
+
+```javascript
+function myFunc(text, callback) {
+  setTimeout(function() {
+    callback(text);
+  }, 2000);
+}
+
+myFunc('Hello world!', console.log);
+// 'Hello world!'
+```
+
+## Promises
+
+Once you understand javascript callbacks you'll soon find yourself in nested "callback hell." This is where Promises help! Wrap your async logic in a `Promise` and `resolve` on success or `reject` on fail. Use `then` to handle success and `catch` to handle failure.
+
+```javascript
+const myPromise = new Promise(function(res, rej) {
+  setTimeout(function(){
+    if (Math.random() < 0.9) {
+      return res('Hooray!');
+    }
+    return rej('Oh no!');
+  }, 1000);
+});
+
+myPromise
+  .then(function(data) {
+    console.log('Success: ' + data);
+   })
+   .catch(function(err) {
+    console.log('Error: ' + err);
+   });
+   
+// If Math.random() returns less than 0.9 the following is logged:
+// "Success: Hooray!"
+// If Math.random() returns 0.9 or greater the following is logged:
+// "Error: On no!"
+```
+
+## Async Await
+
+Once you get the hang of javascript promises, you might like `async await`, which is just "syntactic sugar" on top of promises. In the following example we create an `async` function and within that we `await` the `greeter` promise.
+
+```javascript
+const greeter = new Promise((res, rej) => {
+  setTimeout(() => res('Hello world!'), 2000);
+})
+
+async function myFunc() {
+  const greeting = await greeter;
+  console.log(greeting);
+}
+
+myFunc();
+// 'Hello world!'
+```
+
 ## Interview Questions
 
 ### Traversing a Linked List
