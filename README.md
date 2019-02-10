@@ -333,6 +333,48 @@ console.log(arr);
 
 Phew, did you catch all of that? Neither did I. In fact, I had to reference the MDN docs a lot while writing this - and that's okay! Just knowing what kind of methods are out there with get you 95% of the way there.
 
+## Generators
+
+Don't fear the `*`. The generator function specifies what `value` is yielded next time `next()` is called. Can either have a finite number of yields, after which `next()` returns an `undefined` value, or an infinite number of values using a loop.
+
+```javascript
+function* greeter() {
+  yield 'Hi';
+  yield 'How are you?';
+  yield 'Bye';
+}
+
+const greet = greeter();
+
+console.log(greet.next().value);
+// 'Hi'
+console.log(greet.next().value);
+// 'How are you?'
+console.log(greet.next().value);
+// 'Bye'
+console.log(greet.next().value);
+// undefined
+```
+
+And using a generator for infinite values:
+
+```javascript
+function* idCreator() {
+  let i = 0;
+  while (true)
+    yield i++;
+}
+
+const ids = idCreator();
+
+console.log(ids.next().value);
+// 0
+console.log(ids.next().value);
+// 1
+console.log(ids.next().value);
+// 2
+// etc...
+```
 
 ## Interview Questions
 
