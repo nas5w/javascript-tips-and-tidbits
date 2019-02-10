@@ -10,17 +10,60 @@
 
 ## Sections
 
-- [General Concepts](#general-concepts)
-- [Comparison](#comparison)
-- [Callbacks, Promises, Async Await](#callbacks-promises-async-await)
-- [Interview Questions](#interview-questions)
-- [Miscellaneous](#miscellaneous)
+- Value vs. Reference Variable Assignment
+- Closures
+- Destructuring
+- Spread Syntax
+- Rest Syntax
+- Array Methods
+- Generators
+- Identity Operator (===) vs. Equality Operator (==)
+- Object Comparison
+- Callback Functions
+- Promises
+- Async Await
+- Interview Questions
+- Miscellaneous
 
-## General Concepts
+## Value vs. Reference Variable Assignment
 
-### Closures
+Understanding how JavaScript assigns to variables is foundational to writing bug-free JavaScript. If you don't understand this, you could easily write code that unintentionally changes values.
 
-Closure is an important javascript pattern to give private access to a variable. In this example, createGreeter returns an anonymous function that has access to the supplied greeting, "Hello." For all future uses, sayHello will have access to this greeting! 
+JavaScript always assigns variables by value. But this part is very important: when the assigned value is one of JavaScript's five primitive type (i.e., `Boolean`, `null`, `undefined`, `String`, and `Number`) the actual value is assigned. However, when the assigned value is an `Array`, `Function`, or `Object` a reference is assigned. 
+
+Example time! In the following snippet, `var2` is set as equal to `var1`. Since `var1` is a primitive type (`String`), `var2` is set as equal to `var1`'s String value and can be thought of as completely distinct from `var1` at this point. Accordingly, reassigning `var2` has not effect on `var1`.
+
+```javascript
+let var1 = 'My string';
+let var2 = var1;
+
+var2 = 'My string';
+
+console.log(var1);
+// 'My string'
+console.log(var2);
+// 'My new string'
+```
+
+Let's compare this with object assignment.
+
+```javascript
+let var1 = { name: 'Jim' }
+let var2 = var1;
+
+var2.name = 'John';
+
+console.log(var1);
+// { name: 'John' }
+console.log(var2);
+// { name: 'John' }
+```
+
+One might see how this could cause problems if you expected behavior like primitive assignment! This can get especially ugly if you create a function that unintentionally mutates an object.
+
+## Closures
+
+Closure is an important javascript pattern to give private access to a variable. In this example, `createGreeter` returns an anonymous function that has access to the supplied `greeting`, "Hello." For all future uses, `sayHello` will have access to this greeting!
 
 ```javascript
 function createGreeter(greeting) {
@@ -30,201 +73,37 @@ function createGreeter(greeting) {
 }
 
 const sayHello = createGreeter('Hello');
+
 sayHello('Joe');
 // Hello, Joe
 ```
 
-### Destructuring
-
-Don't be thrown off by javascript parameter destructuring! It's a common way to cleanly pass an object to a function. In this example, destructuring is used to cleanly pass the `person` object to the `introduce` function!
+In a more real-world scenario, you could envision an initial function `apiConnect(apiKey)` that returns some methods that would use the API key. In this case, the `apiKey` would just need to be provided once and never again.
 
 ```javascript
-const person = {
-  name: 'Eddie',
-  age: 24
+function apiConnect(apiKey) {
+  function get(route) {
+    return fetch(`${route}?key=${apiKey}`);
+  }
+  
+  function post(route, params) {
+    return fetch(route, {
+      method: 'POST',
+      body: JSON.stringify(params),
+        headers: {
+          'Authorization': `Bearer ${apiKey}`
+        }
+      })
+  }
+  
+  return { get, post }
 }
 
-function introduce({ name, age }) {
-  console.log(`I'm ${name} and I'm ${age} years old!`);
-}
+const api = apiConnect('my-secret-key');
 
-console.log(introduce(person));
-// "I'm Eddie and I'm 24 years old!"
-```
-
-### Spread Syntax
-
-A javascript concept that can throw people off but is relatively simple is the spread operator! In the following case, `Math.max` can't be applied to the `arr` array because it doesn't take an array as an argument, it takes the individual elements as arguments. The spread operator `...` is used to pull the individual elements out the array.
-
-```javascript
-const arr = [4, 6, -1, 3, 10, 4];
-const max = Math.max(...arr);
-console.log(max);
-// 10
-```
-
-### Rest Syntax
-
-Let's talk about javascript rest syntax. You can use it to put any number of arguments passed to a function into an array!
-
-```javascript
-function myFunc(...args) {
-  console.log(args[0] + args[1]);
-}
-
-myFunc(1, 2, 3, 4);
-// 3
-```
-
-### Array Methods
-
-There is some confusion around the javascript array methods `map`, `filter`, `reduce`. 
-
-- map: return array where each element is transformed as specified by the function
-- filter: return array of elements where the function returns true
-- reduce: accumulate values as specified in function
-
-```javascript
-const arr = [1, 2, 3, 4, 5, 6];
-const mapped = arr.map(el => el + 2);
-const filtered = arr.filter(el => el === 2 || el === 4);
-const reduced = arr.reduce((total, current) => total + current);
-
-console.log(mapped);
-// [3, 4, 5, 6, 7, 8]
-console.log(filtered);
-// [2, 4]
-console.log(reduced);
-// 21
-```
-
-### Generators
-
-Don’t fear the \*. The generator function specifies what `value` is yielded next time `next()` is called. Can either have a finite number of yields, after which `next()` returns an undefined `value`, or an infinite number of values using a loop.
-
-```javascript
-function* greeter() {
-  yield 'Hi';
-  yield 'How are you?';
-  yield 'Bye';
-}
-
-const greet = greeter();
-
-console.log(greet.next().value);
-// 'Hi'
-console.log(greet.next().value);
-// 'How are you?'
-console.log(greet.next().value);
-// 'Bye'
-console.log(greet.next().value);
-// undefined
-```
-
-```javascript
-function* idCreator() {
-  let i = 0;
-  while (true)
-    yield i++;
-}
-
-const ids = idCreator();
-
-console.log(ids.next().value);
-// 0
-console.log(ids.next().value);
-// 1
-console.log(ids.next().value);
-// 2
-// etc...
-```
-
-## Comparison
-
-### Identity Operator (`===`) vs. Equality Operator (`==`)
-
-Be sure to know the difference between the identify operator (`===`) and equality operator (`==`) in javascript! The `==` operator will do type conversion prior to comparing values whereas the `===` operator will not do any type conversion before comparing.
-
-```javascript
-console.log(0 == '0');
-// True
-console.log(0 === '0');
-// False
-```
-
-### Comparing Objects
-
-A mistake I see javascript newcomers make is directly comparing objects. Variables are pointing to references to the objects in memory, not the objects themselves! One method to actually compare them is converting the objects to JSON strings. This has a drawback though: object property order is not guaranteed! A safer way to compare objects is to pull in a library that specializes in deep object comparison (e.g., [lodash's isEqual](https://lodash.com/docs#isEqual)).
-
-```javascript
-const joe1 = { name: 'Joe' };
-const joe2 = { name: 'Joe' };
-
-console.log(joe1 === joe2);
-// False
-```
-
-## Callbacks, Promises, Async Await
-
-### Callbacks
-
-Far too many people are intimidated by #javascript callback functions! They are simple, take this example. The `console.log` function is being passed as a callback to `myFunc`. It gets executed when `setTimeout` completes. That’s all there is to it!
-
-```javascript
-function myFunc(text, callback) {
-  setTimeout(function() {
-    callback(text);
-  }, 2000);
-}
-
-myFunc('Hello world!', console.log);
-// 'Hello world!'
-```
-
-### Promises
-
-Once you understand javascript callbacks you’ll soon find yourself in nested “callback hell.” This is where Promises help! Wrap your async logic in a Promise and `resolve` on success or `reject` on fail. Use “then” to handle success and `catch` to handle failure.
-
-```javascript
-const myPromise = new Promise(function(res, rej) {
-  setTimeout(function(){
-    if (Math.random() < 0.9) {
-      return res('Hooray!');
-    }
-    return rej('Oh no!');
-  }, 1000);
-});
-
-myPromise
-  .then(function(data) {
-    console.log('Success: ' + data);
-   })
-   .catch(function(err) {
-    console.log('Error: ' + err);
-   });
-   
-// If Math.random() returns less than 0.9 the following is logged:
-// "Success: Hooray!"
-// If Math.random() returns 0.9 or greater the following is logged:
-// "Error: On no!"
-```
-
-### Async Await
-
-Once you get the hang of javascript promises, you might like `async await`, which is just “syntactic sugar” on top of promises. In the following example we create an `async` function and within that we `await` the `greeter` promise. 
-
-```javascript
-const greeter = new Promise((res, rej) => {
-  setTimeout(() => res('Hello world!'), 2000);
-})
-
-async function myFunc() {
-  const greeting = await greeter;
-  console.log(greeting);
-}
-
-myFunc();
-// 'Hello world!'
+// No need to include the apiKey anymore
+api.get('http://www.example.com/get-endpoint');
+api.post('http://www.example.com/post-endpoint', { name: 'Joe' })
 ```
 
 ## Interview Questions
