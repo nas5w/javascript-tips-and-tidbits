@@ -174,35 +174,6 @@ function myFunc(...args) {
 
 myFunc(1, 2, 3, 4);
 // 3
-
-## Interview Questions
-
-### Traversing a Linked List
-
-Here's a javascript solution to a classic software development interview question: traversing a linked list. You can use a while loop to recursively iterate through the linked list until there are no more values!
-
-```javascript
-const linkedList = {
-  val: 5,
-  next: {
-    val: 3,
-    next: {
-      val: 10,
-      next: null
-    }
-  }
-}
-
-let arr = [];
-let head = linkedList;
-
-while(head !== null) {
-  arr.push(head.val);
-  head = head.next;
-}
-
-console.log(arr);
-// [5, 3, 10]
 ```
 
 ## Array Methods
@@ -357,6 +328,37 @@ console.log(arr);
 ```
 
 Phew, did you catch all of that? Neither did I. In fact, I had to reference the MDN docs a lot while writing this - and that's okay! Just knowing what kind of methods are out there with get you 95% of the way there.
+
+
+## Interview Questions
+
+### Traversing a Linked List
+
+Here's a javascript solution to a classic software development interview question: traversing a linked list. You can use a while loop to recursively iterate through the linked list until there are no more values!
+
+```javascript
+const linkedList = {
+  val: 5,
+  next: {
+    val: 3,
+    next: {
+      val: 10,
+      next: null
+    }
+  }
+}
+
+let arr = [];
+let head = linkedList;
+
+while(head !== null) {
+  arr.push(head.val);
+  head = head.next;
+}
+
+console.log(arr);
+// [5, 3, 10]
+```
 
 ## Miscellaneous
 
