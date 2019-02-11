@@ -382,9 +382,9 @@ Be sure to know the difference between the identify operator (`===`) and equalit
 
 ```javascript
 console.log(0 == '0');
-// True
+// true
 console.log(0 === '0');
-// False
+// false
 ```
 
 ## Object Comparison
