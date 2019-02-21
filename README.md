@@ -314,7 +314,7 @@ console.log(arr);
 let arr = ['a', 'b', 'c', 'd', 'e'];
 const sliced = arr.slice(2, 4);
 console.log(sliced);
-// ['b', 'c']
+// ['c', 'd']
 console.log(arr);
 // ['a', 'b', 'c', 'd', 'e']
 ```
