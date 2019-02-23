@@ -477,7 +477,19 @@ myFunc();
 
 ## DOM Manipulation
 
+### Create Your Own Query Selector Shorthand
 
+When working with JS in the browser, instead of writing `document.querySelector()`/`document.querySelectorAll()` multiple times, you could do the following thing:
+
+```javascript
+const $ = document.querySelector.bind(document);
+const $$ = document.querySelectorAll.bind(document);
+
+// Usage
+const demo = $("#demo");
+// Select all the `a` tags
+[...$$("a[href *='#']")].forEach(console.log)
+```
 
 ## Interview Questions
 
