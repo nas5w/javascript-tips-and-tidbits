@@ -22,6 +22,7 @@
 - [Callback Functions](#callback-functions)
 - [Promises](#promises)
 - [Async Await](#async-await)
+- [DOM Manipulation](#dom-manipulation)
 - [Interview Questions](#interview-questions)
 - [Miscellaneous](#miscellaneous)
 
@@ -473,6 +474,10 @@ async function myFunc() {
 myFunc();
 // 'Hello world!'
 ```
+
+## DOM Manipulation
+
+
 
 ## Interview Questions
 
