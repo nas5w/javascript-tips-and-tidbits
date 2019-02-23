@@ -148,7 +148,7 @@ function introduce({ name, age }) {
   console.log(`I'm ${name} and I'm ${age} years old!`);
 }
 
-console.log(introduce(person));
+introduce(person);
 // "I'm Eddie and I'm 24 years old!"
 ```
 
