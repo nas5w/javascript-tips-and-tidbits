@@ -31,7 +31,7 @@ Understanding how JavaScript assigns to variables is foundational to writing bug
 
 JavaScript always assigns variables by value. But this part is very important: when the assigned value is one of JavaScript's five primitive type (i.e., `Boolean`, `null`, `undefined`, `String`, and `Number`) the actual value is assigned. However, when the assigned value is an `Array`, `Function`, or `Object` a reference is assigned. 
 
-Example time! In the following snippet, `var2` is set as equal to `var1`. Since `var1` is a primitive type (`String`), `var2` is set as equal to `var1`'s String value and can be thought of as completely distinct from `var1` at this point. Accordingly, reassigning `var2` has not effect on `var1`.
+Example time! In the following snippet, `var2` is set as equal to `var1`. Since `var1` is a primitive type (`String`), `var2` is set as equal to `var1`'s String value and can be thought of as completely distinct from `var1` at this point. Accordingly, reassigning `var2` has no effect on `var1`.
 
 ```javascript
 let var1 = 'My string';
