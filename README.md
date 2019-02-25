@@ -35,7 +35,7 @@ JavaScript always assigns variables by value. But this part is very important: w
 Example time! In the following snippet, `var2` is set as equal to `var1`. Since `var1` is a primitive type (`String`), `var2` is set as equal to `var1`'s String value and can be thought of as completely distinct from `var1` at this point. Accordingly, reassigning `var2` has no effect on `var1`.
 
 ```javascript
-let var1 = 'My string';
+const var1 = 'My string';
 let var2 = var1;
 
 var2 = 'My new string';
@@ -49,8 +49,8 @@ console.log(var2);
 Let's compare this with object assignment.
 
 ```javascript
-let var1 = { name: 'Jim' }
-let var2 = var1;
+const var1 = { name: 'Jim' }
+const var2 = var1;
 
 var2.name = 'John';
 
@@ -254,7 +254,7 @@ There are a lot of great array method to help add or remove elements from arrays
 - **push:** This is a relatively simple method that adds an item to the end of an array. It modifies the array in-place and the function itself returns the item added to the array.
 
 ```javascript
-let arr = [1, 2, 3, 4];
+const arr = [1, 2, 3, 4];
 const pushed = arr.push(5);
 console.log(arr);
 // [1, 2, 3, 4, 5]
@@ -265,7 +265,7 @@ console.log(pushed);
 - **pop:** This removes the last item from an array. Again, it modifies the array in place. The function itself returns the item removed from the array.
 
 ```javascript
-let arr = [1, 2, 3, 4];
+const arr = [1, 2, 3, 4];
 const popped = arr.pop();
 console.log(arr);
 // [1, 2, 3]
@@ -276,7 +276,7 @@ console.log(popped);
 - **shift:** This removes the first item from an array. Again, it modifies the array in place. The function itself returns the item removed from the array.
 
 ```javascript
-let arr = [1, 2, 3, 4];
+const arr = [1, 2, 3, 4];
 const shifted = arr.shift();
 console.log(arr);
 // [2, 3, 4]
@@ -287,7 +287,7 @@ console.log(shifted);
 - **unshift:** This adds one or more elements to the beginning of an array. Again, it modifies the array in place. Unlike a lot of the other methods, the function itself returns the new length of the array.
 
 ```javascript
-let arr = [1, 2, 3, 4];
+const arr = [1, 2, 3, 4];
 const unshifted = arr.unshift(5, 6, 7);
 console.log(arr);
 // [5, 6, 7, 1, 2, 3, 4]
@@ -303,8 +303,8 @@ These methods either modify or return subsets of arrays.
 
 ```javascript
 The following code sample can be read as: at position 1 of the array, remove 0 elements and insert b.
-let arr = ['a', 'c', 'd', 'e'];
-arr.splice(1, 0, 'b')
+const arr = ['a', 'c', 'd', 'e'];
+arr.splice(1, 0, 'b');
 console.log(arr);
 // ['a', 'b', 'c', 'd', 'e']
 ```
@@ -312,7 +312,7 @@ console.log(arr);
 - **slice:** returns a shallow copy of an array from a specified start position and before a specified end position. If no end position is specified, the rest of the array is returned. Importantly, this method does not modify the array in place but rather returns the desired subset.
 
 ```javascript
-let arr = ['a', 'b', 'c', 'd', 'e'];
+const arr = ['a', 'b', 'c', 'd', 'e'];
 const sliced = arr.slice(2, 4);
 console.log(sliced);
 // ['c', 'd']
@@ -325,7 +325,7 @@ console.log(arr);
 - **sort:** sorts an array based on the provided function which takes a first element and second element argument. Modifies the array in place. If the function returns negative or 0, the order remains unchanged. If positive, the element order is switched.
 
 ```javascript
-let arr = [1, 7, 3, -1, 5, 7, 2];
+const arr = [1, 7, 3, -1, 5, 7, 2];
 const sorter = (firstEl, secondEl) => firstEl - secondEl;
 arr.sort(sorter);
 console.log(arr);
@@ -457,6 +457,50 @@ myPromise
 // "Error: On no!"
 ```
 
+### Avoid the nesting anti-pattern of promise chaining.
+
+`.then` methods can be chained. I see a lot of new comers end up in some kind of call back hell inside of a promise when it's completely unnecessary.
+```javascript
+//The wrong way
+getSomedata
+  .then(data => {
+    getSomeMoreData(data)
+      .then(newData => {
+        getSomeRelatedData(newData => {
+          console.log(newData);
+        });
+      });
+  });
+```
+
+```javascript
+//The right way
+getSomeData
+  .then(data => {
+    return getSomeMoreData(data);
+  })
+  .then(data => {
+    return getSomeRelatedData(data);
+  })
+  .then(data => {
+    console.log(data);
+  });
+```
+
+You can see how it's much easier to read the second form and with ES6 implicit returns we could even simplify that further
+```javascript
+getSomeData
+  .then(data => getSomeMoreData(data))
+  .then(data => getSomeRelatedData(data))
+  .then(data => console.log(data));
+
+// Because the function supplied to .then will be called with the the result of the resolve method from the promise we can omit the ceremony of creating an anonymous function altogether. This is equivalent to above
+getSomeData
+  .then(getSomeMoreData)
+  .then(getSomeRelatedData)
+  .then(console.log);
+```
+
 ## Async Await
 
 Once you get the hang of javascript promises, you might like `async await`, which is just "syntactic sugar" on top of promises. In the following example we create an `async` function and within that we `await` the `greeter` promise.
@@ -473,6 +517,24 @@ async function myFunc() {
 
 myFunc();
 // 'Hello world!'
+```
+
+### Async functions return a promise
+
+One important thing to note here is that the result of an `async` function is a promise.
+
+```javascript
+const greeter = new Promise((res, rej) => {
+  setTimeout(() => res('Hello world!'), 2000);
+})
+
+async function myFunc() {
+  return await greeter;
+}
+
+console.log(myFunc()) // => Promise {}
+
+myFunc().then(console.log); // => Hello world!
 ```
 
 ## DOM Manipulation
@@ -509,7 +571,7 @@ const linkedList = {
   }
 }
 
-let arr = [];
+const arr = [];
 let head = linkedList;
 
 while(head !== null) {
