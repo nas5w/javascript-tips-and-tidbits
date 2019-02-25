@@ -454,7 +454,7 @@ myPromise
 // If Math.random() returns less than 0.9 the following is logged:
 // "Success: Hooray!"
 // If Math.random() returns 0.9 or greater the following is logged:
-// "Error: On no!"
+// "Error: Oh no!"
 ```
 
 ### Avoid the nesting anti-pattern of promise chaining.
