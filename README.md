@@ -10,35 +10,35 @@
 
 ## Contents
 
-- [Value vs. Reference Variable Assignment](#value-vs-reference-variable-assignment)
-- [Closures](#closures)
-- [Destructuring](#destructuring)
-- [Spread Syntax](#spread-syntax)
-- [Rest Syntax](#rest-syntax)
-- [Array Methods](#array-methods)
-- [Generators](#generators)
-- [Identity Operator (===) vs. Equality Operator (==)](#identity-operator--vs-equality-operator)
-- [Object Comparison](#object-comparison)
-- [Callback Functions](#callback-functions)
-- [Promises](#promises)
-- [Async Await](#async-await)
-- [DOM Manipulation](#dom-manipulation)
-- [Interview Questions](#interview-questions)
-- [Miscellaneous](#miscellaneous)
+-   [Value vs. Reference Variable Assignment](#value-vs-reference-variable-assignment)
+-   [Closures](#closures)
+-   [Destructuring](#destructuring)
+-   [Spread Syntax](#spread-syntax)
+-   [Rest Syntax](#rest-syntax)
+-   [Array Methods](#array-methods)
+-   [Generators](#generators)
+-   [Identity Operator (===) vs. Equality Operator (==)](#identity-operator--vs-equality-operator)
+-   [Object Comparison](#object-comparison)
+-   [Callback Functions](#callback-functions)
+-   [Promises](#promises)
+-   [Async Await](#async-await)
+-   [DOM Manipulation](#dom-manipulation)
+-   [Interview Questions](#interview-questions)
+-   [Miscellaneous](#miscellaneous)
 
 ## Value vs. Reference Variable Assignment
 
 Understanding how JavaScript assigns to variables is foundational to writing bug-free JavaScript. If you don't understand this, you could easily write code that unintentionally changes values.
 
-JavaScript always assigns variables by value. But this part is very important: when the assigned value is one of JavaScript's five primitive type (i.e., `Boolean`, `null`, `undefined`, `String`, and `Number`) the actual value is assigned. However, when the assigned value is an `Array`, `Function`, or `Object` a reference is assigned. 
+JavaScript always assigns variables by value. But this part is very important: when the assigned value is one of JavaScript's five primitive type (i.e., `Boolean`, `null`, `undefined`, `String`, and `Number`) the actual value is assigned. However, when the assigned value is an `Array`, `Function`, or `Object` a reference is assigned.
 
 Example time! In the following snippet, `var2` is set as equal to `var1`. Since `var1` is a primitive type (`String`), `var2` is set as equal to `var1`'s String value and can be thought of as completely distinct from `var1` at this point. Accordingly, reassigning `var2` has no effect on `var1`.
 
 ```javascript
-const var1 = 'My string';
+const var1 = "My string";
 let var2 = var1;
 
-var2 = 'My new string';
+var2 = "My new string";
 
 console.log(var1);
 // 'My string'
@@ -49,10 +49,10 @@ console.log(var2);
 Let's compare this with object assignment.
 
 ```javascript
-const var1 = { name: 'Jim' }
+const var1 = { name: "Jim" };
 const var2 = var1;
 
-var2.name = 'John';
+var2.name = "John";
 
 console.log(var1);
 // { name: 'John' }
@@ -68,14 +68,14 @@ Closure is an important javascript pattern to give private access to a variable.
 
 ```javascript
 function createGreeter(greeting) {
-  return function(name) {
-    console.log(greeting + ', ' + name);
-  }
+    return function(name) {
+        console.log(greeting + ", " + name);
+    };
 }
 
-const sayHello = createGreeter('Hello');
+const sayHello = createGreeter("Hello");
 
-sayHello('Joe');
+sayHello("Joe");
 // Hello, Joe
 ```
 
@@ -83,39 +83,39 @@ In a more real-world scenario, you could envision an initial function `apiConnec
 
 ```javascript
 function apiConnect(apiKey) {
-  function get(route) {
-    return fetch(`${route}?key=${apiKey}`);
-  }
-  
-  function post(route, params) {
-    return fetch(route, {
-      method: 'POST',
-      body: JSON.stringify(params),
-        headers: {
-          'Authorization': `Bearer ${apiKey}`
-        }
-      })
-  }
-  
-  return { get, post }
+    function get(route) {
+        return fetch(`${route}?key=${apiKey}`);
+    }
+
+    function post(route, params) {
+        return fetch(route, {
+            method: "POST",
+            body: JSON.stringify(params),
+            headers: {
+                Authorization: `Bearer ${apiKey}`
+            }
+        });
+    }
+
+    return { get, post };
 }
 
-const api = apiConnect('my-secret-key');
+const api = apiConnect("my-secret-key");
 
 // No need to include the apiKey anymore
-api.get('http://www.example.com/get-endpoint');
-api.post('http://www.example.com/post-endpoint', { name: 'Joe' })
+api.get("http://www.example.com/get-endpoint");
+api.post("http://www.example.com/post-endpoint", { name: "Joe" });
 ```
 
 ## Destructuring
 
-Don't be thrown off by javascript parameter destructuring! It's a common way to cleanly extract properties from objects. 
+Don't be thrown off by javascript parameter destructuring! It's a common way to cleanly extract properties from objects.
 
 ```javascript
 const obj = {
-  name: 'Joe',
-  food: 'cake'
-}
+    name: "Joe",
+    food: "cake"
+};
 
 const { name, food } = obj;
 
@@ -127,9 +127,9 @@ If you want to extract properties under a different name, you can specify them u
 
 ```javascript
 const obj = {
-  name: 'Joe',
-  food: 'cake'
-}
+    name: "Joe",
+    food: "cake"
+};
 
 const { name: myName, food: myFood } = obj;
 
@@ -141,12 +141,12 @@ In the following example, destructuring is used to cleanly pass the `person` obj
 
 ```javascript
 const person = {
-  name: 'Eddie',
-  age: 24
-}
+    name: "Eddie",
+    age: 24
+};
 
 function introduce({ name, age }) {
-  console.log(`I'm ${name} and I'm ${age} years old!`);
+    console.log(`I'm ${name} and I'm ${age} years old!`);
 }
 
 introduce(person);
@@ -170,7 +170,7 @@ Let's talk about javascript rest syntax. You can use it to put any number of arg
 
 ```javascript
 function myFunc(...args) {
-  console.log(args[0] + args[1]);
+    console.log(args[0] + args[1]);
 }
 
 myFunc(1, 2, 3, 4);
@@ -187,7 +187,7 @@ I will cover a number of different array methods here, organized by similar meth
 
 There is some confusion around the javascript array methods `map`, `filter`, `reduce`. These are helpful methods for transforming an array or returning an aggregate value.
 
-- **map:** return array where each element is transformed as specified by the function
+-   **map:** return array where each element is transformed as specified by the function
 
 ```javascript
 const arr = [1, 2, 3, 4, 5, 6];
@@ -196,7 +196,7 @@ console.log(mapped);
 // [21, 22, 23, 24, 25, 26]
 ```
 
-- **filter:** return array of elements where the function returns true
+-   **filter:** return array of elements where the function returns true
 
 ```javascript
 const arr = [1, 2, 3, 4, 5, 6];
@@ -205,20 +205,33 @@ console.log(filtered);
 // [2, 4]
 ```
 
-- **reduce:** accumulate values as specified in function
+-   **reduce:** accumulate values as specified in function
 
 ```javascript
 const arr = [1, 2, 3, 4, 5, 6];
-const reduced = arr.reduce((total, current) => total + current);
+const reduced = arr.reduce((total, current) => total + current, 0);
 console.log(reduced);
 // 21
 ```
+
+_Note:_ It is always advised to specify an _initialValue_ or you could receive an error. For example:
+
+```javascript
+const arr = [];
+const reduced = arr.reduce((total, current) => total + current);
+console.log(reduced);
+// Uncaught TypeError: Reduce of empty array with no initial value
+```
+
+_Note:_ If there’s no initialValue, then reduce takes the first element of the array as the initialValue and starts the iteration from the 2nd element
+
+You can also read this [tweet](https://twitter.com/sophiebits/status/1099014182261776384?s=20) by Sophie Alpert (@sophiebits), when it is recommended to use <code>reduce</code>
 
 ### find, findIndex, indexOf
 
 The array methods `find`, `findIndex`, and `indexOf` can often be conflated. Use them as follows.
 
-- **find:** return the first instance that matches the specified criteria. Does not progress to find any other matching instances.
+-   **find:** return the first instance that matches the specified criteria. Does not progress to find any other matching instances.
 
 ```javascript
 const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -229,20 +242,20 @@ console.log(found);
 
 Again, note that while everything after 5 meets the criteria, only the first matching element is returned. This is actually super helpful in situations where you would normally break a `for` loop when you find a match!
 
-- **findIndex:** This works almost identically to find, but rather than returning the first matching element it returns the index of the first matching element. Take the following example, which uses names instead of numbers for clarity.
+-   **findIndex:** This works almost identically to find, but rather than returning the first matching element it returns the index of the first matching element. Take the following example, which uses names instead of numbers for clarity.
 
 ```javascript
-const arr = ['Nick', 'Frank', 'Joe', 'Frank'];
-const foundIndex = arr.findIndex(el => el === 'Frank');
+const arr = ["Nick", "Frank", "Joe", "Frank"];
+const foundIndex = arr.findIndex(el => el === "Frank");
 console.log(foundIndex);
 // 1
 ```
 
-- **indexOf:** Works almost identically to findIndex, but instead of taking a function as an argument it takes a simple value. You can use this when you have simpler logic and don't need to use a function to check whether there is a match.
+-   **indexOf:** Works almost identically to findIndex, but instead of taking a function as an argument it takes a simple value. You can use this when you have simpler logic and don't need to use a function to check whether there is a match.
 
 ```javascript
-const arr = ['Nick', 'Frank', 'Joe', 'Frank'];
-const foundIndex = arr.indexOf('Frank');
+const arr = ["Nick", "Frank", "Joe", "Frank"];
+const foundIndex = arr.indexOf("Frank");
 console.log(foundIndex);
 // 1
 ```
@@ -251,7 +264,7 @@ console.log(foundIndex);
 
 There are a lot of great array method to help add or remove elements from arrays in a targeted fashion.
 
-- **push:** This is a relatively simple method that adds an item to the end of an array. It modifies the array in-place and the function itself returns the item added to the array.
+-   **push:** This is a relatively simple method that adds an item to the end of an array. It modifies the array in-place and the function itself returns the item added to the array.
 
 ```javascript
 const arr = [1, 2, 3, 4];
@@ -262,7 +275,7 @@ console.log(pushed);
 // 5
 ```
 
-- **pop:** This removes the last item from an array. Again, it modifies the array in place. The function itself returns the item removed from the array.
+-   **pop:** This removes the last item from an array. Again, it modifies the array in place. The function itself returns the item removed from the array.
 
 ```javascript
 const arr = [1, 2, 3, 4];
@@ -273,7 +286,7 @@ console.log(popped);
 // 4
 ```
 
-- **shift:** This removes the first item from an array. Again, it modifies the array in place. The function itself returns the item removed from the array.
+-   **shift:** This removes the first item from an array. Again, it modifies the array in place. The function itself returns the item removed from the array.
 
 ```javascript
 const arr = [1, 2, 3, 4];
@@ -284,7 +297,7 @@ console.log(shifted);
 // 1
 ```
 
-- **unshift:** This adds one or more elements to the beginning of an array. Again, it modifies the array in place. Unlike a lot of the other methods, the function itself returns the new length of the array.
+-   **unshift:** This adds one or more elements to the beginning of an array. Again, it modifies the array in place. Unlike a lot of the other methods, the function itself returns the new length of the array.
 
 ```javascript
 const arr = [1, 2, 3, 4];
@@ -299,7 +312,7 @@ console.log(unshifted);
 
 These methods either modify or return subsets of arrays.
 
-- **splice:** Change the contents of an array by removing or replacing existing elements and/or adding new elements. This method modifies the array in place.
+-   **splice:** Change the contents of an array by removing or replacing existing elements and/or adding new elements. This method modifies the array in place.
 
 ```javascript
 The following code sample can be read as: at position 1 of the array, remove 0 elements and insert b.
@@ -309,10 +322,10 @@ console.log(arr);
 // ['a', 'b', 'c', 'd', 'e']
 ```
 
-- **slice:** returns a shallow copy of an array from a specified start position and before a specified end position. If no end position is specified, the rest of the array is returned. Importantly, this method does not modify the array in place but rather returns the desired subset.
+-   **slice:** returns a shallow copy of an array from a specified start position and before a specified end position. If no end position is specified, the rest of the array is returned. Importantly, this method does not modify the array in place but rather returns the desired subset.
 
 ```javascript
-const arr = ['a', 'b', 'c', 'd', 'e'];
+const arr = ["a", "b", "c", "d", "e"];
 const sliced = arr.slice(2, 4);
 console.log(sliced);
 // ['c', 'd']
@@ -322,7 +335,7 @@ console.log(arr);
 
 ### sort
 
-- **sort:** sorts an array based on the provided function which takes a first element and second element argument. Modifies the array in place. If the function returns negative or 0, the order remains unchanged. If positive, the element order is switched.
+-   **sort:** sorts an array based on the provided function which takes a first element and second element argument. Modifies the array in place. If the function returns negative or 0, the order remains unchanged. If positive, the element order is switched.
 
 ```javascript
 const arr = [1, 7, 3, -1, 5, 7, 2];
@@ -340,9 +353,9 @@ Don't fear the `*`. The generator function specifies what `value` is yielded nex
 
 ```javascript
 function* greeter() {
-  yield 'Hi';
-  yield 'How are you?';
-  yield 'Bye';
+    yield "Hi";
+    yield "How are you?";
+    yield "Bye";
 }
 
 const greet = greeter();
@@ -361,9 +374,8 @@ And using a generator for infinite values:
 
 ```javascript
 function* idCreator() {
-  let i = 0;
-  while (true)
-    yield i++;
+    let i = 0;
+    while (true) yield i++;
 }
 
 const ids = idCreator();
@@ -382,9 +394,9 @@ console.log(ids.next().value);
 Be sure to know the difference between the identify operator (`===`) and equality operator (`==`) in javascript! The `==` operator will do type conversion prior to comparing values whereas the `===` operator will not do any type conversion before comparing.
 
 ```javascript
-console.log(0 == '0');
+console.log(0 == "0");
 // true
-console.log(0 === '0');
+console.log(0 === "0");
 // false
 ```
 
@@ -392,11 +404,11 @@ console.log(0 === '0');
 
 A mistake I see javascript newcomers make is directly comparing objects. Variables are pointing to references to the objects in memory, not the objects themselves! One method to actually compare them is converting the objects to JSON strings. This has a drawback though: object property order is not guaranteed! A safer way to compare objects is to pull in a library that specializes in deep object comparison (e.g., lodash's isEqual).
 
-The following objects appear equal but they are in fact pointing to different references. 
+The following objects appear equal but they are in fact pointing to different references.
 
 ```javascript
-const joe1 = { name: 'Joe' };
-const joe2 = { name: 'Joe' };
+const joe1 = { name: "Joe" };
+const joe2 = { name: "Joe" };
 
 console.log(joe1 === joe2);
 // false
@@ -405,7 +417,7 @@ console.log(joe1 === joe2);
 Conversely, the following evaluates as true because one object is set equal to the other object and are therefore pointing to the same reference (there is only one object in memory).
 
 ```javascript
-const joe1 = { name: 'Joe' };
+const joe1 = { name: "Joe" };
 const joe2 = joe1;
 
 console.log(joe1 === joe2);
@@ -420,12 +432,12 @@ Far too many people are intimidated by javascript callback functions! They are s
 
 ```javascript
 function myFunc(text, callback) {
-  setTimeout(function() {
-    callback(text);
-  }, 2000);
+    setTimeout(function() {
+        callback(text);
+    }, 2000);
 }
 
-myFunc('Hello world!', console.log);
+myFunc("Hello world!", console.log);
 // 'Hello world!'
 ```
 
@@ -435,22 +447,22 @@ Once you understand javascript callbacks you'll soon find yourself in nested "ca
 
 ```javascript
 const myPromise = new Promise(function(res, rej) {
-  setTimeout(function(){
-    if (Math.random() < 0.9) {
-      return res('Hooray!');
-    }
-    return rej('Oh no!');
-  }, 1000);
+    setTimeout(function() {
+        if (Math.random() < 0.9) {
+            return res("Hooray!");
+        }
+        return rej("Oh no!");
+    }, 1000);
 });
 
 myPromise
-  .then(function(data) {
-    console.log('Success: ' + data);
-   })
-   .catch(function(err) {
-    console.log('Error: ' + err);
-   });
-   
+    .then(function(data) {
+        console.log("Success: " + data);
+    })
+    .catch(function(err) {
+        console.log("Error: " + err);
+    });
+
 // If Math.random() returns less than 0.9 the following is logged:
 // "Success: Hooray!"
 // If Math.random() returns 0.9 or greater the following is logged:
@@ -460,45 +472,45 @@ myPromise
 ### Avoid the nesting anti-pattern of promise chaining.
 
 `.then` methods can be chained. I see a lot of new comers end up in some kind of call back hell inside of a promise when it's completely unnecessary.
+
 ```javascript
 //The wrong way
-getSomedata
-  .then(data => {
-    getSomeMoreData(data)
-      .then(newData => {
+getSomedata.then(data => {
+    getSomeMoreData(data).then(newData => {
         getSomeRelatedData(newData => {
-          console.log(newData);
+            console.log(newData);
         });
-      });
-  });
+    });
+});
 ```
 
 ```javascript
 //The right way
 getSomeData
-  .then(data => {
-    return getSomeMoreData(data);
-  })
-  .then(data => {
-    return getSomeRelatedData(data);
-  })
-  .then(data => {
-    console.log(data);
-  });
+    .then(data => {
+        return getSomeMoreData(data);
+    })
+    .then(data => {
+        return getSomeRelatedData(data);
+    })
+    .then(data => {
+        console.log(data);
+    });
 ```
 
 You can see how it's much easier to read the second form and with ES6 implicit returns we could even simplify that further
+
 ```javascript
 getSomeData
-  .then(data => getSomeMoreData(data))
-  .then(data => getSomeRelatedData(data))
-  .then(data => console.log(data));
+    .then(data => getSomeMoreData(data))
+    .then(data => getSomeRelatedData(data))
+    .then(data => console.log(data));
 
 // Because the function supplied to .then will be called with the the result of the resolve method from the promise we can omit the ceremony of creating an anonymous function altogether. This is equivalent to above
 getSomeData
-  .then(getSomeMoreData)
-  .then(getSomeRelatedData)
-  .then(console.log);
+    .then(getSomeMoreData)
+    .then(getSomeRelatedData)
+    .then(console.log);
 ```
 
 ## Async Await
@@ -507,12 +519,12 @@ Once you get the hang of javascript promises, you might like `async await`, whic
 
 ```javascript
 const greeter = new Promise((res, rej) => {
-  setTimeout(() => res('Hello world!'), 2000);
-})
+    setTimeout(() => res("Hello world!"), 2000);
+});
 
 async function myFunc() {
-  const greeting = await greeter;
-  console.log(greeting);
+    const greeting = await greeter;
+    console.log(greeting);
 }
 
 myFunc();
@@ -525,14 +537,14 @@ One important thing to note here is that the result of an `async` function is a 
 
 ```javascript
 const greeter = new Promise((res, rej) => {
-  setTimeout(() => res('Hello world!'), 2000);
-})
+    setTimeout(() => res("Hello world!"), 2000);
+});
 
 async function myFunc() {
-  return await greeter;
+    return await greeter;
 }
 
-console.log(myFunc()) // => Promise {}
+console.log(myFunc()); // => Promise {}
 
 myFunc().then(console.log); // => Hello world!
 ```
@@ -550,7 +562,7 @@ const $$ = document.querySelectorAll.bind(document);
 // Usage
 const demo = $("#demo");
 // Select all the `a` tags
-[...$$("a[href *='#']")].forEach(console.log)
+[...$$("a[href *='#']")].forEach(console.log);
 ```
 
 ## Interview Questions
@@ -561,22 +573,22 @@ Here's a javascript solution to a classic software development interview questio
 
 ```javascript
 const linkedList = {
-  val: 5,
-  next: {
-    val: 3,
+    val: 5,
     next: {
-      val: 10,
-      next: null
+        val: 3,
+        next: {
+            val: 10,
+            next: null
+        }
     }
-  }
-}
+};
 
 const arr = [];
 let head = linkedList;
 
-while(head !== null) {
-  arr.push(head.val);
-  head = head.next;
+while (head !== null) {
+    arr.push(head.val);
+    head = head.next;
 }
 
 console.log(arr);
