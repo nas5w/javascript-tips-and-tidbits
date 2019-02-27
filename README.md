@@ -35,10 +35,10 @@ JavaScript always assigns variables by value. But this part is very important: w
 Example time! In the following snippet, `var2` is set as equal to `var1`. Since `var1` is a primitive type (`String`), `var2` is set as equal to `var1`'s String value and can be thought of as completely distinct from `var1` at this point. Accordingly, reassigning `var2` has no effect on `var1`.
 
 ```javascript
-const var1 = "My string";
+const var1 = 'My string';
 let var2 = var1;
 
-var2 = "My new string";
+var2 = 'My new string';
 
 console.log(var1);
 // 'My string'
@@ -49,10 +49,10 @@ console.log(var2);
 Let's compare this with object assignment.
 
 ```javascript
-const var1 = { name: "Jim" };
+const var1 = { name: 'Jim' };
 const var2 = var1;
 
-var2.name = "John";
+var2.name = 'John';
 
 console.log(var1);
 // { name: 'John' }
@@ -69,13 +69,13 @@ Closure is an important javascript pattern to give private access to a variable.
 ```javascript
 function createGreeter(greeting) {
     return function(name) {
-        console.log(greeting + ", " + name);
+        console.log(greeting + ', ' + name);
     };
 }
 
-const sayHello = createGreeter("Hello");
+const sayHello = createGreeter('Hello');
 
-sayHello("Joe");
+sayHello('Joe');
 // Hello, Joe
 ```
 
@@ -89,7 +89,7 @@ function apiConnect(apiKey) {
 
     function post(route, params) {
         return fetch(route, {
-            method: "POST",
+            method: 'POST',
             body: JSON.stringify(params),
             headers: {
                 Authorization: `Bearer ${apiKey}`
@@ -100,11 +100,11 @@ function apiConnect(apiKey) {
     return { get, post };
 }
 
-const api = apiConnect("my-secret-key");
+const api = apiConnect('my-secret-key');
 
 // No need to include the apiKey anymore
-api.get("http://www.example.com/get-endpoint");
-api.post("http://www.example.com/post-endpoint", { name: "Joe" });
+api.get('http://www.example.com/get-endpoint');
+api.post('http://www.example.com/post-endpoint', { name: 'Joe' });
 ```
 
 ## Destructuring
@@ -113,8 +113,8 @@ Don't be thrown off by javascript parameter destructuring! It's a common way to 
 
 ```javascript
 const obj = {
-    name: "Joe",
-    food: "cake"
+    name: 'Joe',
+    food: 'cake'
 };
 
 const { name, food } = obj;
@@ -127,8 +127,8 @@ If you want to extract properties under a different name, you can specify them u
 
 ```javascript
 const obj = {
-    name: "Joe",
-    food: "cake"
+    name: 'Joe',
+    food: 'cake'
 };
 
 const { name: myName, food: myFood } = obj;
@@ -141,7 +141,7 @@ In the following example, destructuring is used to cleanly pass the `person` obj
 
 ```javascript
 const person = {
-    name: "Eddie",
+    name: 'Eddie',
     age: 24
 };
 
@@ -245,8 +245,8 @@ Again, note that while everything after 5 meets the criteria, only the first mat
 -   **findIndex:** This works almost identically to find, but rather than returning the first matching element it returns the index of the first matching element. Take the following example, which uses names instead of numbers for clarity.
 
 ```javascript
-const arr = ["Nick", "Frank", "Joe", "Frank"];
-const foundIndex = arr.findIndex(el => el === "Frank");
+const arr = ['Nick', 'Frank', 'Joe', 'Frank'];
+const foundIndex = arr.findIndex(el => el === 'Frank');
 console.log(foundIndex);
 // 1
 ```
@@ -254,8 +254,8 @@ console.log(foundIndex);
 -   **indexOf:** Works almost identically to findIndex, but instead of taking a function as an argument it takes a simple value. You can use this when you have simpler logic and don't need to use a function to check whether there is a match.
 
 ```javascript
-const arr = ["Nick", "Frank", "Joe", "Frank"];
-const foundIndex = arr.indexOf("Frank");
+const arr = ['Nick', 'Frank', 'Joe', 'Frank'];
+const foundIndex = arr.indexOf('Frank');
 console.log(foundIndex);
 // 1
 ```
@@ -325,7 +325,7 @@ console.log(arr);
 -   **slice:** returns a shallow copy of an array from a specified start position and before a specified end position. If no end position is specified, the rest of the array is returned. Importantly, this method does not modify the array in place but rather returns the desired subset.
 
 ```javascript
-const arr = ["a", "b", "c", "d", "e"];
+const arr = ['a', 'b', 'c', 'd', 'e'];
 const sliced = arr.slice(2, 4);
 console.log(sliced);
 // ['c', 'd']
@@ -353,9 +353,9 @@ Don't fear the `*`. The generator function specifies what `value` is yielded nex
 
 ```javascript
 function* greeter() {
-    yield "Hi";
-    yield "How are you?";
-    yield "Bye";
+    yield 'Hi';
+    yield 'How are you?';
+    yield 'Bye';
 }
 
 const greet = greeter();
@@ -394,9 +394,9 @@ console.log(ids.next().value);
 Be sure to know the difference between the identify operator (`===`) and equality operator (`==`) in javascript! The `==` operator will do type conversion prior to comparing values whereas the `===` operator will not do any type conversion before comparing.
 
 ```javascript
-console.log(0 == "0");
+console.log(0 == '0');
 // true
-console.log(0 === "0");
+console.log(0 === '0');
 // false
 ```
 
@@ -407,8 +407,8 @@ A mistake I see javascript newcomers make is directly comparing objects. Variabl
 The following objects appear equal but they are in fact pointing to different references.
 
 ```javascript
-const joe1 = { name: "Joe" };
-const joe2 = { name: "Joe" };
+const joe1 = { name: 'Joe' };
+const joe2 = { name: 'Joe' };
 
 console.log(joe1 === joe2);
 // false
@@ -417,7 +417,7 @@ console.log(joe1 === joe2);
 Conversely, the following evaluates as true because one object is set equal to the other object and are therefore pointing to the same reference (there is only one object in memory).
 
 ```javascript
-const joe1 = { name: "Joe" };
+const joe1 = { name: 'Joe' };
 const joe2 = joe1;
 
 console.log(joe1 === joe2);
@@ -437,7 +437,7 @@ function myFunc(text, callback) {
     }, 2000);
 }
 
-myFunc("Hello world!", console.log);
+myFunc('Hello world!', console.log);
 // 'Hello world!'
 ```
 
@@ -449,18 +449,18 @@ Once you understand javascript callbacks you'll soon find yourself in nested "ca
 const myPromise = new Promise(function(res, rej) {
     setTimeout(function() {
         if (Math.random() < 0.9) {
-            return res("Hooray!");
+            return res('Hooray!');
         }
-        return rej("Oh no!");
+        return rej('Oh no!');
     }, 1000);
 });
 
 myPromise
     .then(function(data) {
-        console.log("Success: " + data);
+        console.log('Success: ' + data);
     })
     .catch(function(err) {
-        console.log("Error: " + err);
+        console.log('Error: ' + err);
     });
 
 // If Math.random() returns less than 0.9 the following is logged:
@@ -519,7 +519,7 @@ Once you get the hang of javascript promises, you might like `async await`, whic
 
 ```javascript
 const greeter = new Promise((res, rej) => {
-    setTimeout(() => res("Hello world!"), 2000);
+    setTimeout(() => res('Hello world!'), 2000);
 });
 
 async function myFunc() {
@@ -537,7 +537,7 @@ One important thing to note here is that the result of an `async` function is a 
 
 ```javascript
 const greeter = new Promise((res, rej) => {
-    setTimeout(() => res("Hello world!"), 2000);
+    setTimeout(() => res('Hello world!'), 2000);
 });
 
 async function myFunc() {
@@ -560,7 +560,7 @@ const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
 // Usage
-const demo = $("#demo");
+const demo = $('#demo');
 // Select all the `a` tags
 [...$$("a[href *='#']")].forEach(console.log);
 ```
