@@ -469,7 +469,7 @@ myPromise
 // "Error: Oh no!"
 ```
 
-### Avoid the nesting anti-pattern of promise chaining.
+### Avoid the nesting anti-pattern of promise chaining!
 
 `.then` methods can be chained. I see a lot of new comers end up in some kind of call back hell inside of a promise when it's completely unnecessary.
 
@@ -498,15 +498,17 @@ getSomeData
     });
 ```
 
-You can see how it's much easier to read the second form and with ES6 implicit returns we could even simplify that further
+You can see how it's much easier to read the second form and with ES6 implicit returns we could even simplify that further:
 
 ```javascript
 getSomeData
     .then(data => getSomeMoreData(data))
     .then(data => getSomeRelatedData(data))
     .then(data => console.log(data));
+```
+Because the function supplied to .then will be called with the the result of the resolve method from the promise we can omit the ceremony of creating an anonymous function altogether. This is equivalent to above:
 
-// Because the function supplied to .then will be called with the the result of the resolve method from the promise we can omit the ceremony of creating an anonymous function altogether. This is equivalent to above
+```javascript
 getSomeData
     .then(getSomeMoreData)
     .then(getSomeRelatedData)
