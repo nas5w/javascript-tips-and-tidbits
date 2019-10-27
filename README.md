@@ -264,7 +264,7 @@ console.log(foundIndex);
 
 There are a lot of great array method to help add or remove elements from arrays in a targeted fashion.
 
--   **push:** This is a relatively simple method that adds an item to the end of an array. It modifies the array in-place and the function itself returns the item added to the array.
+-   **push:** This is a relatively simple method that adds an item to the end of an array. It modifies the array in-place and the function itself returns the length of the new array.
 
 ```javascript
 const arr = [1, 2, 3, 4];
