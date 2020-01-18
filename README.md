@@ -8,7 +8,7 @@
 
 ---
 
-Want to learn more about JavaScript development? Consider signing up for my [free newsletter](https://buttondown.email/typeofnan) where I periodically send out digestible bits of JavaScript knowledge!
+**Want to learn more about JavaScript development?** Consider signing up for my [free newsletter](https://buttondown.email/typeofnan) where I periodically send out digestible bits of JavaScript knowledge!
 
 ---
 
