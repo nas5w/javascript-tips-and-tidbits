@@ -35,7 +35,7 @@ Want to learn more about JavaScript development? Consider signing up for my [fre
 
 Understanding how JavaScript assigns to variables is foundational to writing bug-free JavaScript. If you don't understand this, you could easily write code that unintentionally changes values.
 
-JavaScript always assigns variables by value. But this part is very important: when the assigned value is one of JavaScript's five primitive type (i.e., `Boolean`, `null`, `undefined`, `String`, and `Number`) the actual value is assigned. However, when the assigned value is an `Array`, `Function`, or `Object` a reference is assigned.
+When JavaScript assigns one of the five primitive type (i.e., `Boolean`, `null`, `undefined`, `String`, and `Number`) to a variable, the JavaScript runtime gets to determine whether that primitive is assigned by *reference* or by *value*. It doesn't really matter how it's done because primitives can't be mutated (they're *immutable*). However, when the assigned value is an `Array`, `Function`, or `Object` a reference to the array/function/object in memory is assigned.
 
 Example time! In the following snippet, `var2` is set as equal to `var1`. Since `var1` is a primitive type (`String`), `var2` is set as equal to `var1`'s String value and can be thought of as completely distinct from `var1` at this point. Accordingly, reassigning `var2` has no effect on `var1`.
 
@@ -64,6 +64,13 @@ console.log(var1);
 console.log(var2);
 // { name: 'John' }
 ```
+
+How this is working: 
+- The object `{ name: 'Jim' }` is created in memory
+- The variable `var1` is assigned a *reference* to the created object
+- The variable `var2` is set to equal `var1`... which is a reference to that same object in memory!
+- `var2` is mutated, which really means *the object var2 is referencing is mutated*
+- `var1` is pointing to the same object as `var2`, and therefore we see this mutation when accessing `var1`
 
 One might see how this could cause problems if you expected behavior like primitive assignment! This can get especially ugly if you create a function that unintentionally mutates an object.
 
