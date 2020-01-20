@@ -35,7 +35,7 @@
 
 Understanding how JavaScript assigns to variables is foundational to writing bug-free JavaScript. If you don't understand this, you could easily write code that unintentionally changes values.
 
-When JavaScript assigns one of the five primitive type (i.e., `Boolean`, `null`, `undefined`, `String`, and `Number`) to a variable, the JavaScript runtime gets to determine whether that primitive is assigned by *reference* or by *value*. It doesn't really matter how it's done because primitives can't be mutated (they're *immutable*). However, when the assigned value is an `Array`, `Function`, or `Object` a reference to the array/function/object in memory is assigned.
+When JavaScript assigns one of the seven primitive type (i.e., Boolean, Null, Undefined, String, Number, Symbol, and BigInt.) to a variable, the JavaScript runtime gets to determine whether that primitive is assigned by *reference* or by *value*. It doesn't really matter how it's done because primitives can't be mutated (they're *immutable*). However, when the assigned value is an `Array`, `Function`, or `Object` a reference to the array/function/object in memory is assigned.
 
 Example time! In the following snippet, `var2` is set as equal to `var1`. Since `var1` is a primitive type (`String`), `var2` is set as equal to `var1`'s String value and can be thought of as completely distinct from `var1` at this point. Accordingly, reassigning `var2` has no effect on `var1`.
 
