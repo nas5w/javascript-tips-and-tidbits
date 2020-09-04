@@ -414,7 +414,7 @@ console.log(0 === '0');
 
 ## Object Comparison
 
-A mistake I see javascript newcomers make is directly comparing objects. Variables are pointing to references to the objects in memory, not the objects themselves! One method to actually compare them is converting the objects to JSON strings. This has a drawback though: object property order is not guaranteed! A safer way to compare objects is to pull in a library that specializes in deep object comparison (e.g., lodash's isEqual).
+A mistake I see javascript newcomers make is directly comparing objects. Variables are pointing to references to the objects in memory, not the objects themselves! One method to actually compare them is converting the objects to JSON strings. This has a drawback though: `JSON.stringify` is not able to stringify a lot of object types (e.g., functions and sets)! A safer way to compare objects is to pull in a library that specializes in deep object comparison (e.g., lodash's isEqual).
 
 The following objects appear equal but they are in fact pointing to different references.
 
