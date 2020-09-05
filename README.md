@@ -76,6 +76,8 @@ How this is working:
 
 One might see how this could cause problems if you expected behavior like primitive assignment! This can get especially ugly if you create a function that unintentionally mutates an object.
 
+For more on variable assignment and primitive/object mutability, see [this article](https://typeofnan.dev/variable-assignment-primitive-object-mutation/).
+
 ## Closures
 
 Closure is an important javascript pattern to give private access to a variable. In this example, `createGreeter` returns an anonymous function that has access to the supplied `greeting`, "Hello." For all future uses, `sayHello` will have access to this greeting!
