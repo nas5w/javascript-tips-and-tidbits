@@ -76,7 +76,7 @@ How this is working:
 
 One might see how this could cause problems if you expected behavior like primitive assignment! This can get especially ugly if you create a function that unintentionally mutates an object.
 
-For more on variable assignment and primitive/object mutability, see [this article](https://typeofnan.dev/variable-assignment-primitive-object-mutation/).
+For more on variable assignment and primitive/object mutability, see <a href="https://typeofnan.dev/variable-assignment-primitive-object-mutation/">this article</a>.
 
 ## Closures
 
