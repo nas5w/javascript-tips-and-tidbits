@@ -9,7 +9,7 @@
 ---
 
 **Want to learn more about JavaScript development? Consider:** 
-- Signing up for my [free newsletter](https://buttondown.email/devtuts) where I periodically send out digestible bits of JavaScript knowledge!
+- Signing up for my [free newsletter](https://howthewebworks.substack.com) where I explain how the web works!
 - Subscribing to my [free youtube channel](https://www.youtube.com/c/devtutsco) where I teach JavaScript, Typescript, and React tutorials!
 
 ---
